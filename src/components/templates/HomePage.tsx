@@ -1,17 +1,10 @@
 import React from 'react';
 import ProductCards from '../modules/ProductCards';
 import GridTem from '../shared/GridTem';
-
-interface Products {
-  id: Number;
-  title: String;
-  desc: String;
-  price: Number;
-  img: String;
-  quantity: Number;
-}
+import { Products } from '../../../types/types';
 
 export default function HomePage() {
+  // ! mock api
   const items: Array<Products> = [
     {
       id: 1,
@@ -56,12 +49,13 @@ export default function HomePage() {
   ];
   return (
     <div>
+      {/* using GridTem component to make UI responsive */}
       <GridTem>
         {items.map((i) => {
           return (
-            <div>
+            <section>
               <ProductCards {...i} />
-            </div>
+            </section>
           );
         })}
       </GridTem>
