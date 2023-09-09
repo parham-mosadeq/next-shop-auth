@@ -3,6 +3,8 @@ import connectDB from '../../../../utils/connectDB';
 import { hashPassword } from '../../../../utils/auth';
 import User from '../../../../models/User';
 
+// todo fix email problem line-38
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return;
