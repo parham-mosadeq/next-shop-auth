@@ -4,7 +4,7 @@ import AccountFrom from '../modules/AccountFrom';
 export default function AccountPage() {
   return (
     <article className='text-center h-full flex justify-center flex-col'>
-      <AccountFrom btnTxt='Register' />
+      <AccountFrom btnTxt='Login' />
       <p className='capitalize font-bold'>
         don't have an account ?{' '}
         <Link className='text-blue-700 font-normal' href='/account/signup'>

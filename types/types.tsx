@@ -7,4 +7,10 @@ interface Products {
   quantity: number;
 }
 
-export type { Products };
+interface UserInfo {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export type { Products, UserInfo };
