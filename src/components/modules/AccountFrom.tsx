@@ -1,7 +1,8 @@
+// * dynamic form for both login and sign up
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/app/store';
 import { getName, getEmail, getPassword } from '../redux/features/signupSlice';
-// * dynamic form for both login and sign up
+
 // * more types will be added, such as funcs to send data to data base!
 type Props = { btnTxt: String; handleSubmit: Function };
 

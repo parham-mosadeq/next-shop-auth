@@ -2,9 +2,10 @@ import Link from 'next/link';
 import AccountFrom from '../modules/AccountFrom';
 
 export default function AccountPage() {
-
-  // ! make it conditional => if the user is signed in show **dashboard** 
+  // todo
+  // ! make it conditional => if the user is signed in show **dashboard**
   // !  if not show log in form
+  // todo
   return (
     <article className='text-center h-full flex justify-center flex-col'>
       <AccountFrom btnTxt='Login' handleSubmit={() => {}} />
