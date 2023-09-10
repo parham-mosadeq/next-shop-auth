@@ -53,7 +53,7 @@ export default function HomePage() {
       <GridTem>
         {items.map((i) => {
           return (
-            <section>
+            <section key={i.id}>
               <ProductCards {...i} />
             </section>
           );

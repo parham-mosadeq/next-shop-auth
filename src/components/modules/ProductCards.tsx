@@ -17,7 +17,7 @@ export default function ProductCards({
     >
       <div className='w-full'>
         <Image
-          className='block object-cover h-full mx-auto max-h-40'
+          className='block object-cover h-auto w-auto mx-auto max-h-40'
           alt={title}
           src={img}
           width={100}
