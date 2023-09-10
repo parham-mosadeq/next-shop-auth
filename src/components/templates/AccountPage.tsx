@@ -26,10 +26,6 @@ export default function AccountPage() {
     if (status === 'authenticated') router.replace('/');
   }, [status]);
 
-  // todo
-  // ! make it conditional => if the user is signed in show **dashboard**
-  // !  if not show log in form
-  // todo
   return (
     <article className='text-center h-full flex justify-center flex-col'>
       <AccountFrom btnTxt='Login' handleSubmit={handleSubmit} />

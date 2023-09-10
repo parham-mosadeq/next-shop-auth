@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import UserStatus from './UserStatus';
+import { useState } from 'react';
 import { MdOutlineAccountBox } from 'react-icons/md';
 import {
   AiOutlineShoppingCart,
@@ -6,14 +8,9 @@ import {
   AiOutlineHome,
 } from 'react-icons/ai';
 import { HiX } from 'react-icons/hi';
-import { useState } from 'react';
-import { useSession } from 'next-auth/react';
-import UserStatus from './UserStatus';
 
 function Navbar() {
   const [show, setShow] = useState(false);
-  const { data, status } = useSession();
-  console.log(status, data);
 
   return (
     <div

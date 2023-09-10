@@ -22,7 +22,7 @@ export default function UserStatus() {
       {isUser && (
         <button
           onClick={() => signOut()}
-          className='bg-red-800 capitalize mt-2 px-4 py-1 text-white rounded-sm'
+          className='bg-red-600 capitalize mt-2 px-4 py-1 text-white rounded-sm'
         >
           sign out
         </button>

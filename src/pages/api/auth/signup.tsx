@@ -40,7 +40,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     email: email,
     password: hashedPass,
   });
-  console.log(newUser);
   return res
     .status(200)
     .json({ status: 'success', msg: 'User created successfully' });
