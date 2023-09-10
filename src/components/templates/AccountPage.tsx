@@ -24,10 +24,7 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (status === 'authenticated') router.replace('/');
-    if (status === 'unauthenticated') router.replace('/signup');
   }, [status]);
-
-  console.log(data);
 
   // todo
   // ! make it conditional => if the user is signed in show **dashboard**

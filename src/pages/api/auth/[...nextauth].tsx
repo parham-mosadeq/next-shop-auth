@@ -4,12 +4,12 @@ import NextAuth from 'next-auth/next';
 import connectDB from '../../../../utils/connectDB';
 import User from '../../../../models/User';
 import { verifyPassword } from '../../../../utils/auth';
-
-const nextAuthOptions = {
+import { UserInfo } from '../../../../types/types';
+const nextAuthOption = {
   session: { strategy: 'jwt' },
   providers: [
     CredentialsProvider({
-      async authorize(credentials, req): Promise<{ email: string }> {
+      async authorize(credentials: UserInfo, req: NextApiRequest) {
         const { email, password, name } = credentials;
         try {
           await connectDB();
@@ -21,18 +21,20 @@ const nextAuthOptions = {
           throw new Error('Invalid data');
         }
 
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email: email, name: name });
 
         if (!user) {
           throw new Error("This user doesn't exits");
         }
 
         const isValid = await verifyPassword(password, user.password);
-
+        if (!isValid) {
+          throw new Error('Password or Email is wrong');
+        }
         return { email };
       },
     }),
   ],
 };
 
-export default NextAuth(nextAuthOptions);
+export default NextAuth(nextAuthOption);

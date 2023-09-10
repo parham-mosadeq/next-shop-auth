@@ -7,9 +7,14 @@ import {
 } from 'react-icons/ai';
 import { HiX } from 'react-icons/hi';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import UserStatus from './UserStatus';
 
 function Navbar() {
   const [show, setShow] = useState(false);
+  const { data, status } = useSession();
+  console.log(status, data);
+
   return (
     <div
       className={`${
@@ -17,8 +22,12 @@ function Navbar() {
       } shadow-md relative md:w-full md:mx-auto md:flex md:max-w-7xl md:p-2 md:justify-center md:items-center `}
     >
       <header className='w-full  flex justify-between items-center  md:justify-start px-4 md:px-20'>
-        <Link href='/'>LOGO</Link>
-        <button className='md:hidden' onClick={() => setShow((pre) => !pre)}>
+        {/* rendering conditionally => to show user email and logout btn or guest user */}
+        <UserStatus />
+        <button
+          className='md:hidden text-lg'
+          onClick={() => setShow((pre) => !pre)}
+        >
           {show ? <HiX /> : <AiOutlineMenu />}
         </button>
       </header>

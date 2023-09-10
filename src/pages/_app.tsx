@@ -6,7 +6,7 @@ import store from '@/components/redux/app/store';
 import { SessionProvider } from 'next-auth/react';
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={pageProps}>
+    <SessionProvider session={pageProps} refetchInterval={5 * 60}>
       <Rtk store={store}>
         <Layout>
           <Component {...pageProps} />
