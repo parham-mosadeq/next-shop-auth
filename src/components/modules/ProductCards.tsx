@@ -8,6 +8,7 @@ export default function ProductCards({
   img,
   desc,
   price,
+  id,
   quantity,
 }: Products) {
   return (
@@ -24,7 +25,7 @@ export default function ProductCards({
           height={100}
         />
         <h3 className='text-xl capitalize font-bold tracking-wide text-blue-900'>
-          <Link href={`/product/${title}`}>{title}</Link>
+          <Link href={`/products/${id}`}>{title}</Link>
         </h3>
       </div>
       <div className='text-stone-400 text-justify capitalize'>
@@ -34,7 +35,7 @@ export default function ProductCards({
           <p>quantity: {quantity}</p>
         </div>
       </div>
-      <Link href={`/product/${title}`} className='capitalize text-blue-800'>
+      <Link href={`/products/${id}`} className='capitalize text-blue-800'>
         read more
       </Link>
     </article>
