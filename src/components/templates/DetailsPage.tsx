@@ -1,8 +1,12 @@
 import React from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 import { Products } from '../../../types/types';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '@/components/redux/features/storeSlice';
+import { useSession } from 'next-auth/react';
+import { ToastContainer, toast } from 'react-toastify';
+import { successToast, warnToast } from '../shared/Toasts';
 
 export default function DetailsPage({
   id,
@@ -13,8 +17,16 @@ export default function DetailsPage({
   quantity,
 }: Products) {
   const state = useSelector((state: any) => state.storeState);
-  console.log(state);
   const dispatch = useDispatch();
+  const { status } = useSession();
+  const handleSubmit = () => {
+    if (status === 'unauthenticated') {
+      warnToast('Login or Sign up');
+      return;
+    }
+    successToast('added to cart');
+    dispatch(addToCart({ img, title, price, quantity }));
+  };
   return (
     <div
       key={id}
@@ -39,12 +51,13 @@ export default function DetailsPage({
       </div>
       <div>
         <button
-          onClick={() => dispatch(addToCart({ img, title, price, quantity }))}
+          onClick={() => handleSubmit()}
           className='bg-blue-600 px-4 py-2 rounded-lg shadow-xl my-10'
         >
           add to cart
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
