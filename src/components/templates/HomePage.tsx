@@ -16,7 +16,7 @@ export default function HomePage() {
     },
     {
       id: 2,
-      title: 'iphone 14 pro max',
+      title: 'iphone 13 pro max',
       desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, aspernatur culpa, soluta accusamus illo tenetur vitae sequi fuga suscipit incidunt repellendus dicta delectus quae officiis quo voluptatum aut dolor? Exercitationem?`,
       price: 1300,
       img: '/iphone.webp',
@@ -24,7 +24,7 @@ export default function HomePage() {
     },
     {
       id: 3,
-      title: 'iphone 14 pro max',
+      title: 'iphone 12 pro max',
       desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, aspernatur culpa, soluta accusamus illo tenetur vitae sequi fuga suscipit incidunt repellendus dicta delectus quae officiis quo voluptatum aut dolor? Exercitationem?`,
       price: 1300,
       img: '/iphone.webp',
@@ -32,7 +32,7 @@ export default function HomePage() {
     },
     {
       id: 4,
-      title: 'iphone 14 pro max',
+      title: 'iphone 11 pro max',
       desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, aspernatur culpa, soluta accusamus illo tenetur vitae sequi fuga suscipit incidunt repellendus dicta delectus quae officiis quo voluptatum aut dolor? Exercitationem?`,
       price: 1300,
       img: '/iphone.webp',
@@ -40,7 +40,7 @@ export default function HomePage() {
     },
     {
       id: 5,
-      title: 'iphone 14 pro max',
+      title: 'iphone 10 pro max',
       desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, aspernatur culpa, soluta accusamus illo tenetur vitae sequi fuga suscipit incidunt repellendus dicta delectus quae officiis quo voluptatum aut dolor? Exercitationem?`,
       price: 1300,
       img: '/iphone.webp',
