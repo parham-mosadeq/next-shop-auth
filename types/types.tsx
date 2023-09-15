@@ -13,4 +13,10 @@ interface UserInfo {
   password: string;
 }
 
-export type { Products, UserInfo };
+interface StoreInitState {
+  products: [];
+  qyt: number;
+  isCheckedOut: boolean;
+}
+
+export type { Products, UserInfo, StoreInitState };

@@ -1,15 +1,20 @@
 import React from 'react';
 import { Products } from '../../../types/types';
 import Image from 'next/image';
-import GridTem from '../shared/GridTem';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '@/components/redux/features/storeSlice';
+
 export default function DetailsPage({
-  title,
+  id,
   img,
+  title,
   desc,
   price,
-  id,
   quantity,
 }: Products) {
+  const state = useSelector((state: any) => state.storeState);
+  console.log(state);
+  const dispatch = useDispatch();
   return (
     <div
       key={id}
@@ -33,7 +38,10 @@ export default function DetailsPage({
         </div>
       </div>
       <div>
-        <button className='bg-blue-600 px-4 py-2 rounded-lg shadow-xl my-10'>
+        <button
+          onClick={() => dispatch(addToCart({ img, title, price, quantity }))}
+          className='bg-blue-600 px-4 py-2 rounded-lg shadow-xl my-10'
+        >
           add to cart
         </button>
       </div>
