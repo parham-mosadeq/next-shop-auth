@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
 import User from '../../../../models/User';
 import connectDB from '../../../../utils/connectDB';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -23,7 +23,8 @@ export default async function handler(
   const { products } = req.body;
   const { session } = req.body;
   console.log(session);
-  // const userEmail = await getSession({ req });
+  // const userEmail = await getServerSession({req});
+  // console.log(userEmail);
 
   const user = await User.findOne({
     email: session,
@@ -35,5 +36,5 @@ export default async function handler(
 
   user.shoppingCart.push(...products);
   user.save();
-  res.status(200).json({ status: 'success', msg: 'add successfully' });
+  res.status(200).json({ status: 'success', msg: 'added successfully' });
 }
