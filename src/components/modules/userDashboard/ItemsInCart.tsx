@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Products } from '../../../../types/types';
 import Image from 'next/image';
 import Link from 'next/link';
-export default function ItemsPurchased() {
+export default function ItemsInCart() {
   // id,img/title,price
   const products = useSelector((state: any) => state.storeState.products);
   const isValid = products.length > 0;

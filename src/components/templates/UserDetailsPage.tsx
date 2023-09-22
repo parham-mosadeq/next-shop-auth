@@ -1,14 +1,16 @@
-import ItemsPurchased from '../modules/userDashboard/ItemsPurchased';
+import BoughtProducts from '../modules/userDashboard/BoughtProducts';
+import ItemsInCart from '../modules/userDashboard/ItemsInCart';
 
 export default function UserDetailsPage() {
   return (
-    <div>
+    <div className=''>
       {/* showing recent products in users shopping cart */}
-      <ItemsPurchased />
+      <ItemsInCart />
       {/* showing recent products in users shopping cart */}
 
-      {/* showing users recent purchased */}
-      {/* showing users recent purchased */}
+      {/* showing users recent purchased from data base*/}
+      <BoughtProducts />
+      {/* showing users recent purchased from data base*/}
     </div>
   );
 }
