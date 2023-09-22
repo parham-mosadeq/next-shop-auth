@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 export default function UserName() {
   // for more validation
   const router = useRouter();
-  const { data, status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
     if (status === 'unauthenticated') router.replace('/');
   }, [status]);
 
   return (
-    <div>
+    <div className='mx-auto max-w-6xl'>
       <UserDetailsPage />
     </div>
   );
