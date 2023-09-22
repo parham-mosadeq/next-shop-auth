@@ -1,7 +1,29 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Products } from '../../../../types/types';
 
 export default function BoughtProducts() {
+  const products = useSelector((state: any) => state.storeState.products);
+  const [userList, setUserList] = useState([]);
+  const handleFetch = async () => {
+    const res = await fetch('/api/products/');
+    const data = await res.json();
+    setUserList(data);
+  };
+  useEffect(() => {
+    handleFetch();
+  }, [products]);
   return (
-    <div>BoughtProducts</div>
-  )
+    <div>
+      <h1> recently bought:</h1>
+      {userList.length &&
+        userList.map((item: Products) => {
+          return (
+            <div key={item.id}>
+              <div>{item.title}</div>
+            </div>
+          );
+        })}
+    </div>
+  );
 }

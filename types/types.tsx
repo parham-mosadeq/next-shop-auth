@@ -20,4 +20,9 @@ interface StoreInitState {
   totalPrice: number;
 }
 
-export type { Products, UserInfo, StoreInitState };
+type UserCartType = {
+  status: string;
+  msg: string;
+};
+
+export type { Products, UserInfo, StoreInitState, UserCartType };
