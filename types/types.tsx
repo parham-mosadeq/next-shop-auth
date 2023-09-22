@@ -14,9 +14,10 @@ interface UserInfo {
 }
 
 interface StoreInitState {
-  products: [];
+  products: Array<Products>;
   qyt: number;
   isCheckedOut: boolean;
+  totalPrice: number;
 }
 
 export type { Products, UserInfo, StoreInitState };

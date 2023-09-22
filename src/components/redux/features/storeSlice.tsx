@@ -1,7 +1,7 @@
-import { createSlice, compose } from '@reduxjs/toolkit';
-import { Products, StoreInitState } from '../../../../types/types';
+import { createSlice, current } from '@reduxjs/toolkit';
+import { StoreInitState } from '../../../../types/types';
 
-const initialState = {
+const initialState: StoreInitState = {
   products: [],
   qyt: 0,
   isCheckedOut: false,
@@ -16,7 +16,13 @@ const storeSlice = createSlice({
       state.products = [...state.products, action.payload];
       state.qyt++;
     },
-    removeFromCart: (state, action) => {},
+    removeFromCart: (state, action) => {
+      console.log(action.payload);
+      state.products = state.products.filter(
+        (item) => item.id !== action.payload
+      );
+      state.qyt--;
+    },
     checkOut: (state, action) => {},
   },
 });

@@ -3,10 +3,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Products } from '../../../types/types';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '@/components/redux/features/storeSlice';
+import {
+  addToCart,
+  removeFromCart,
+} from '@/components/redux/features/storeSlice';
 import { useSession } from 'next-auth/react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { successToast, warnToast } from '../shared/Toasts';
+import { useRouter } from 'next/router';
+import { isInCard } from '../../../utils/funcs';
 
 export default function DetailsPage({
   id,
@@ -16,17 +21,26 @@ export default function DetailsPage({
   price,
   quantity,
 }: Products) {
+  const {
+    query: { pid },
+  } = useRouter();
   const state = useSelector((state: any) => state.storeState);
   const dispatch = useDispatch();
+  console.log(state);
   const { status } = useSession();
   const handleSubmit = () => {
     if (status === 'unauthenticated') {
       warnToast('Login or Sign up');
       return;
     }
-    successToast('added to cart');
-    dispatch(addToCart({ img, title, price, quantity }));
+    successToast('Added To Cart');
+    dispatch(addToCart({ id, img, title, price, quantity }));
   };
+
+  const handleDelete = (id: number) => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     <div
       key={id}
@@ -52,9 +66,18 @@ export default function DetailsPage({
       <div>
         <button
           onClick={() => handleSubmit()}
-          className='bg-blue-600 px-4 py-2 rounded-lg shadow-xl my-10'
+          className='bg-blue-600 px-4 text-white capitalize py-2 mx-2 rounded-lg shadow-xl my-10'
         >
           add to cart
+        </button>
+        <button
+          disabled={!isInCard(id, state.products)}
+          onClick={() => handleDelete(id)}
+          className={`${
+            !isInCard(id, state.products) ? 'bg-gray-300' : 'bg-red-600'
+          } text-white capitalize px-4 mx-2 py-2 rounded-lg shadow-xl my-10`}
+        >
+          remove
         </button>
       </div>
       <ToastContainer />

@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import { items } from '@/components/templates/HomePage';
 export default function ProductsDetails() {
   const {
-    query: { title: id },
+    query: { pid },
   } = useRouter();
 
-  const filteredItem = items.find((i) => i.id === +id!);
-  
+  const filteredItem = items.find((i) => i.id === +pid!);
+
   return (
     <div>
       <DetailsPage {...filteredItem!} />
