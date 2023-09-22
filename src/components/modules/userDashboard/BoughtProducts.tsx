@@ -15,11 +15,11 @@ export default function BoughtProducts() {
   }, [products]);
   return (
     <div>
-      <h1> recently bought:</h1>
+      <h1 className='text-lg capitalize'> recently bought:</h1>
       {userList.length &&
         userList.map((item: Products) => {
           return (
-            <div key={item.id}>
+            <div className='capitalize' key={item.id * Math.random()}>
               <div>{item.title}</div>
             </div>
           );

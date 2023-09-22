@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Products } from '../../../../types/types';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import ItemDetails from './ItemDetails';
 
 export default function ItemsInCart() {
   const products = useSelector((state: any) => state.storeState.products);
   const isValid = products.length > 0;
   const { data: dt } = useSession();
+
   const handleCheckout = async () => {
     const res = await fetch('/api/products/updateCart', {
       method: 'POST',
@@ -22,6 +22,9 @@ export default function ItemsInCart() {
 
     const data = await res.json();
     console.log(data);
+    if (data.status === 'success') {
+      window.location.replace('/cart/banner');
+    }
   };
   return (
     <div className='flex justify-center items-center flex-col mx-auto'>
@@ -30,32 +33,11 @@ export default function ItemsInCart() {
       </h1>
       <div className='w-full'>
         {isValid ? (
-          products.map((item: Products) => {
-            return (
-              <div
-                key={item.id}
-                className={`flex bg-slate-900 my-10 rounded-lg shadow-lg justify-between w-full items-center px-2`}
-              >
-                <div>
-                  <Link href={`/products/${item.id}`}>
-                    <Image
-                      className='object-contain  max-h-32 max-w-[120px]  md:max-w-[249px]'
-                      alt={item.title}
-                      width={350}
-                      height={350}
-                      src={item.img}
-                    />
-                  </Link>
-                </div>
-                <div className='text-white capitalize text-lg lg:px-4'>
-                  <Link className='text-blue-500' href={`/products/${item.id}`}>
-                    {item.title}
-                  </Link>
-                  <p>{item.price}$</p>
-                </div>
-              </div>
-            );
-          })
+          products.map((item: Products) => (
+            <div key={item.id}>
+              <ItemDetails {...item} />
+            </div>
+          ))
         ) : (
           <>
             <p className='text-center text-xl uppercase font-light tracking-widest'>
