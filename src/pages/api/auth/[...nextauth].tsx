@@ -1,16 +1,22 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth/next';
 import connectDB from '../../../../utils/connectDB';
 import User from '../../../../models/User';
 import { verifyPassword } from '../../../../utils/auth';
 import { UserInfo } from '../../../../types/types';
-const nextAuthOption = {
+
+type p = { email: string };
+const nextAuthOption: NextAuthOptions = {
   session: { strategy: 'jwt' },
   providers: [
     CredentialsProvider({
-      async authorize(credentials: UserInfo, req: NextApiRequest) {
-        const { email, password, name } = credentials;
+      async authorize(credentials, req: NextApiRequest) {
+        const name = credentials?.name;
+        const password = credentials?.password;
+        const email = credentials?.email;
+
         try {
           await connectDB();
         } catch (error) {
@@ -31,7 +37,8 @@ const nextAuthOption = {
         if (!isValid) {
           throw new Error('Password or Email is wrong');
         }
-        return { email };
+
+        return { user, email };
       },
     }),
   ],
