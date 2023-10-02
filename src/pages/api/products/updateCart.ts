@@ -24,7 +24,6 @@ export default async function handler(
   const { session } = req.body;
   console.log(session);
   // const userEmail = await getServerSession({req});
-  // console.log(userEmail);
 
   const user = await User.findOne({
     email: session,

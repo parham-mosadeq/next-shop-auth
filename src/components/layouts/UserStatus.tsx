@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
+ 
+import useStoredItems from '../hooks/useStoredItems';
 export default function UserStatus() {
   const { data, status } = useSession();
-  console.log(data);
   const isUser = status === 'authenticated';
+  const storedItems= useStoredItems()
+ 
+
   return (
     <div className='flex flex-col justify-center items-center'>
       <Link
@@ -12,9 +16,12 @@ export default function UserStatus() {
         href={isUser ? `/dashboard/${data?.user?.email}` : '/account'}
       >
         {status === 'authenticated' ? (
-          <>
-            <span>{data.user?.email}</span>
-          </>
+          <div className='flex items-center w-full'>
+            <h3>{data.user?.email}</h3>
+            <h5 className=' mx-5  rounded-full text-blue-300  text-center'>
+              cart: {storedItems?.length}
+            </h5>
+          </div>
         ) : (
           'Guest User/login'
         )}

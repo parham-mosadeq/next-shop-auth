@@ -8,10 +8,8 @@ import {
   AiOutlineHome,
 } from 'react-icons/ai';
 import { HiX } from 'react-icons/hi';
-
 function Navbar() {
   const [show, setShow] = useState(false);
-
   return (
     <div
       className={`${
@@ -57,7 +55,7 @@ function Navbar() {
           <li
             className={` ${
               show ? 'my-10' : ''
-            } md:my-0 md:mx-3 items-center text-2xl text-blue-500`}
+            } md:my-0 md:mx-3 items-center  text-2xl text-blue-500`}
           >
             <Link href='/cart'>
               <AiOutlineShoppingCart />

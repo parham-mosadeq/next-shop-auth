@@ -26,7 +26,6 @@ export default function DetailsPage({
   } = useRouter();
   const state = useSelector((state: any) => state.storeState);
   const dispatch = useDispatch();
-  console.log(state);
   const { status } = useSession();
   const handleSubmit = () => {
     if (status === 'unauthenticated') {

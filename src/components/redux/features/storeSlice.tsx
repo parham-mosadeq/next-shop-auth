@@ -15,13 +15,15 @@ const storeSlice = createSlice({
     addToCart: (state, action) => {
       state.products = [...state.products, action.payload];
       state.qyt++;
+
+      window.localStorage.setItem('store', JSON.stringify(state));
     },
     removeFromCart: (state, action) => {
-      console.log(action.payload);
       state.products = state.products.filter(
         (item) => item.id !== action.payload
       );
       state.qyt--;
+      window.localStorage.setItem('store', JSON.stringify(state));
     },
     checkOut: (state, action) => {},
   },

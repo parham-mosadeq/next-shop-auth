@@ -21,7 +21,6 @@ export default function ItemsInCart() {
     });
 
     const data = await res.json();
-    console.log(data);
     if (data.status === 'success') {
       window.location.replace('/cart/banner');
     }
