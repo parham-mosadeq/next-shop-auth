@@ -6,7 +6,7 @@ export default function useStoredItems() {
   const [items, setItems] = useState<Products[]>();
 
   useEffect(() => {
-    setItems(JSON.parse(`${window.localStorage.getItem('store')}`).products);
+    setItems(JSON.parse(`${window.localStorage.getItem('store')}`)?.products);
   }, []);
   return items;
 }

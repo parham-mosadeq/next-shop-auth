@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCards from '../modules/ProductCards';
 import GridTem from '../shared/GridTem';
 import { Products } from '../../../types/types';
-
+import nextId from 'react-id-generator';
 // ! mock api
 export const items: Array<Products> = [
   {
@@ -54,7 +54,7 @@ export default function HomePage() {
       <GridTem>
         {items.map((i) => {
           return (
-            <section key={i.id}>
+            <section key={nextId()}>
               <ProductCards {...i} />
             </section>
           );

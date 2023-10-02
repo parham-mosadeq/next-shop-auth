@@ -25,7 +25,11 @@ const storeSlice = createSlice({
       state.qyt--;
       window.localStorage.setItem('store', JSON.stringify(state));
     },
-    checkOut: (state, action) => {},
+    checkOut: (state, action) => {
+      console.log(current(state));
+      state.isCheckedOut = true;
+      window.localStorage.setItem('store', JSON.stringify(initialState));
+    },
   },
 });
 

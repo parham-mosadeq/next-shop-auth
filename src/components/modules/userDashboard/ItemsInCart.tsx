@@ -1,18 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Products } from '../../../../types/types';
 import { useSession } from 'next-auth/react';
 import ItemDetails from './ItemDetails';
-
+import useStoredItems from '@/components/hooks/useStoredItems';
+import { checkOut } from '@/components/redux/features/storeSlice';
 export default function ItemsInCart() {
-  const products = useSelector((state: any) => state.storeState.products);
-  const isValid = products.length > 0;
+  const storedItems = useStoredItems();
+  const isValid = storedItems?.length > 0;
   const { data: dt } = useSession();
+  const dispatch = useDispatch();
 
   const handleCheckout = async () => {
     const res = await fetch('/api/products/updateCart', {
       method: 'POST',
       body: JSON.stringify({
-        products: isValid && products,
+        products: isValid && storedItems,
         session: dt?.user?.email,
       }),
       headers: {
@@ -22,6 +24,7 @@ export default function ItemsInCart() {
 
     const data = await res.json();
     if (data.status === 'success') {
+      dispatch(checkOut());
       window.location.replace('/cart/banner');
     }
   };
@@ -32,7 +35,7 @@ export default function ItemsInCart() {
       </h1>
       <div className='w-full'>
         {isValid ? (
-          products.map((item: Products) => (
+          storedItems!.map((item: Products) => (
             <div key={item.id}>
               <ItemDetails {...item} />
             </div>
