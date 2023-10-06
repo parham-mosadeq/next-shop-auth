@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 export default function AccountPage() {
-  const { data, status } = useSession();
+  const {   status } = useSession();
   const router = useRouter();
   const { email, name, password } = useSelector(
     (state: RootState) => state.formState
