@@ -24,7 +24,7 @@ export default function ItemsInCart() {
 
     const data = await res.json();
     if (data.status === 'success') {
-      dispatch(checkOut());
+      dispatch(checkOut(null));
       window.location.replace('/cart/banner');
     }
   };
